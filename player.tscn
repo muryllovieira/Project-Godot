@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5vva0qhfin5w"]
+
+[ext_resource type="PackedScene" uid="uid://b8hc2ex21u8xj" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_physics_fullglove_low.tscn" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="2_hqtel"]
+[ext_resource type="PackedScene" uid="uid://bkdeegb8w3oah" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_physics_fullglove_low.tscn" id="2_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://fiul51tsyoop" path="res://addons/godot-xr-tools/functions/function_teleport.tscn" id="3_sweqy"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_1jxqw"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_2hs0m"]
+
+[node name="XROrigin3D" type="XROrigin3D"]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+
+[node name="LeftHandController" type="XRController3D" parent="."]
+tracker = &"left_hand"
+
+[node name="LeftPhysicsHand" parent="LeftHandController" instance=ExtResource("1_onrkg")]
+
+[node name="FunctionPickup" parent="LeftHandController/LeftPhysicsHand" instance=ExtResource("2_hqtel")]
+
+[node name="FunctionTeleport" parent="LeftHandController/LeftPhysicsHand" instance=ExtResource("3_sweqy")]
+player_radius = 0.25
+
+[node name="RightHandController" type="XRController3D" parent="."]
+tracker = &"right_hand"
+
+[node name="RightPhysicsHand" parent="RightHandController" instance=ExtResource("2_i3pqv")]
+
+[node name="FunctionPickup" parent="RightHandController/RightPhysicsHand" instance=ExtResource("2_hqtel")]
+
+[node name="MovementTurn" parent="RightHandController/RightPhysicsHand" instance=ExtResource("5_1jxqw")]
+turn_mode = 2
+
+[node name="PlayerBody" parent="." instance=ExtResource("5_2hs0m")]
