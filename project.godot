@@ -31,3 +31,4 @@ import/blender/enabled=false
 [xr]
 
 openxr/enabled=true
+shaders/enabled=true
